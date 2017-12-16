@@ -17,17 +17,14 @@ class server:
                 self.name.append(str1.split()[1])
 
                 self.sendnoself(self.numtotal,('0客户端'+str(self.numtotal)+' ('+str1.split()[1]+') 已上线'))
-
                 continue
-
+                
             for i in range(1,len(str1.split())):
                 msg.append(str1.split()[i])
             msgsend=' '.join(msg)
             thisname=self.name[int(msgnum)-1]
             self.text.insert(END,'客户端'+msgnum+' ('+thisname+')'+' '+datetime.datetime.now().strftime('%Y-%m-%d %T')+'\n  '+msgsend+'\n')
 #talk
-
-
             self.sendnoself(msgnum,(thisname+' '+msgsend))
 
     def sendnoself(self,nonum,msg):
@@ -39,10 +36,8 @@ class server:
                     continue
 
 
-
     def send(self):
         while True:
-
             if self.isbutton != 1:
                 continue
             time.sleep(0.1)
@@ -129,12 +124,10 @@ class server:
         host='localhost'
         port=12345
         print (host)
-
         s.bind((host,port))
         s.listen(5)
+        
         self.name=[]
-
-
         self.numtotal=0
         self.add=[]
         self.isbutton=0
@@ -158,10 +151,8 @@ class server:
 
 
 
-class client:
-        #客户端接收，如果接收到'stop'就直接退出
+class client:      
     def accept(self,s):
-
             while True:
                 testmsg=[]
                 showmsg=[]
@@ -176,17 +167,11 @@ class client:
                         self.num=msg.split()[1]
                         ultmsg='连'+ultmsg
 
-
-
-
                 else:
                     showname=msg.split()[0]
                     for i in range(1,len(msg.split())):
                         showmsg.append(msg.split()[i])
                     ultmsg=' '.join(showmsg)
-
-
-
 
                 time.sleep(1.5)
                 if num==str(0) or num=='连':
@@ -202,23 +187,15 @@ class client:
             while True:
                 if self.isbutton!=1:
                     continue
-
                 #            msg=input('\nClient '+str(self.num)+': ')
-
                 msg=self.sendmsg.get()
                 sendmsg=str(self.num)+' '+msg
-
                 self.text.insert(END,self.conname+'(ME) '+datetime.datetime.now().strftime('%Y-%m-%d %T')+'\n  '+msg+'\n')
-
-
                 s.send(sendmsg.encode('utf-8'))
                 self.isbutton=0
-                if msg=='stop':
-                    os._exit(0)
+
                 #客户端界面绘制
     def mainloop1(self):
-
-
             window=Tk()
             window.title('程迅PP--关注沟通，更关心你')
             frame1=Frame(window)
